@@ -7,3 +7,4 @@ ola=ElectricScooter(1235,"S306",20,120)
 print(f"Tesla Battery Percentage : {tesla.get_battery_percentage()}")
 print(f"Ola Battery Percentage : {ola.get_battery_percentage()}")
 
+

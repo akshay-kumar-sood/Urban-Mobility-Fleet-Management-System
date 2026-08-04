@@ -1,4 +1,6 @@
-class Vehicle:
+from abc import ABC,abstractmethod
+
+class Vehicle(ABC):
 
     def __init__(self, vehicle_id, model, battery_percentage,maintenance_status, rental_price):
 
@@ -32,3 +34,7 @@ class Vehicle:
 
     def set_rental_price(self, rental_price):
         self.__rental_price = rental_price
+
+    @abstractmethod
+    def calculate_trip_cost(self,distance):
+        pass
