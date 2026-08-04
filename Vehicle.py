@@ -2,14 +2,14 @@ from abc import ABC,abstractmethod
 
 class Vehicle(ABC):
 
-    def __init__(self, vehicle_id, model, battery_percentage,maintenance_status, rental_price):
+    def __init__(self, vehicle_id, model, battery_percentage):
 
         self.vehicle_id = vehicle_id
         self.model = model
         self.battery_percentage = None
         self.set_battery_percentage(battery_percentage)
-        self.__maintenance_status = maintenance_status
-        self.__rental_price = rental_price
+        self.__maintenance_status = "Available"
+        self.__rental_price = 0
 
     
     def get_battery_percentage(self):
