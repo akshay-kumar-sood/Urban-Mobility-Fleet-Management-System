@@ -1,5 +1,6 @@
 from ElectricCar import ElectricCar
 from ElectricScooter import ElectricScooter
+from hub import FleetHub
 
 tesla=ElectricCar(1051,"T202",86,8)
 ola=ElectricScooter(1235,"S306",20,120)
@@ -16,4 +17,14 @@ for ele in vehicle_list:
     else:
         print(f"Model is : {ele.model} and Fare is : {ele.calculate_trip_cost(60)}")
 
-        
+
+Fleet1=FleetHub()
+Fleet1.new_hub("Airport")
+Fleet1.new_hub("Bus-Stand")
+
+print(Fleet1.hubs)
+
+Fleet1.add_vehicle("Airport",tesla)
+Fleet1.add_vehicle("Bus-Stand",ola)
+
+print(Fleet1.hubs)
