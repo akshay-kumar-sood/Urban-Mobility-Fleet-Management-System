@@ -28,3 +28,14 @@ Fleet1.add_vehicle("Airport",tesla)
 Fleet1.add_vehicle("Bus-Stand",ola)
 
 print(Fleet1.hubs)
+
+print("----testing uc7------")
+
+tesla1=ElectricCar(1054,"T202",86,8)
+tesla2=ElectricCar(1054,"T209",40,8)
+
+Fleet1.add_vehicle("Airport",tesla1)
+Fleet1.add_vehicle("Airport",tesla2)
+
+print(Fleet1.hubs)
+
