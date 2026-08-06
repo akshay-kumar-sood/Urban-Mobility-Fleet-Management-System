@@ -39,5 +39,9 @@ class Vehicle(ABC):
     def calculate_trip_cost(self,distance):
         pass
 
-    def __eq__(self,other):
-        return self.vehicle_id == other.vehicle_id
+    def __eq__(self, other):
+
+        if isinstance(other, Vehicle):
+            return self.vehicle_id == other.vehicle_id
+
+        return False
