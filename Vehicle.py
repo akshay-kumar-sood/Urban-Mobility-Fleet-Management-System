@@ -38,3 +38,4 @@ class Vehicle(ABC):
     @abstractmethod
     def calculate_trip_cost(self,distance):
         pass
+
