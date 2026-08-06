@@ -2,6 +2,10 @@ from ElectricCar import ElectricCar
 from ElectricScooter import ElectricScooter
 from hub import Hub
 from Fleet import Fleet
+from Vehicle import Vehicle
+
+def calculate_trip_cost(self,distance):
+        return distance
 
 tesla=ElectricCar(1051,"T202",86,8)
 ola=ElectricScooter(1235,"S306",20,120)
@@ -115,11 +119,12 @@ while True:
 
         print("Invalid Choice")
 
-print("-"*60)
+print("="*60)
 print("Testing UC7 - Validation on same vehicle id")
+print("="*60)
 
 old_tesla=ElectricCar(1098,"A2026",90,5)
-new_tesla=ElectricCar(1098,"A2027",80,8)
+new_tesla=ElectricCar(1097,"A2027",80,8)
 
 airport=Hub("airport")
 airport.add_vehicle(old_tesla)
@@ -127,6 +132,23 @@ airport.add_vehicle(new_tesla)
 
 
 
+fleet3=Fleet()
+hub3=Hub("Airport")
+omni=ElectricCar(1051,"A102",83,8)
+jeep=ElectricScooter(1045,"A345",89,120)
+hub3.add_vehicle(omni)
+hub3.add_vehicle(jeep)
+
+fleet3.add_hub(hub3)
+print("="*60)
+print("Testing UC8 - Search Functionality - Display Vehicles in a Hub")
+print("="*60)
+fleet3.search_hub()
+
+print("="*60)
+print("Testing UC8 - Search Functionality - Filter on basic of battery percentage>80")
+print("="*60)
+fleet3.percentage_search()
+
 
         
-
