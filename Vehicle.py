@@ -67,6 +67,3 @@ class Vehicle(ABC):
 
         return False
     
-    
-    
-  

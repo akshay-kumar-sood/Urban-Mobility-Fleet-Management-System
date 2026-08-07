@@ -88,9 +88,37 @@ class Hub:
                     print(f"Seating Capacity    :  {vehicle.seating_capacity}")
 
                 elif vehicle_type == "ElectricScooter":
-                    print(f"Max Speed Limit :{vehicle.max_speed_limit} %")
+                    print(f"Max Speed Limit     :  {vehicle.max_speed_limit} ")
 
                 print("-"*60)
 
 
-   
+    def status_count(self) -> None:
+
+        print()
+        available_status=0
+        on_trip=0
+        under_maintain=0
+
+
+        if not self.vehicles:
+            raise ValueError(f"No vehicle found in {self.hub_name} hub.")
+
+        for vehicle in self.vehicles:
+
+            if vehicle.maintenance_status == "Available":
+                available_status+=1
+
+            elif vehicle.maintenance_status == "On Trip":
+                on_trip+=1
+
+            elif vehicle.maintenance_status == "Under Maintenance":
+                under_maintain+=1
+
+        print("=" *60)
+        print(f"Available status : {available_status}")
+        print(f"On Trip :{on_trip}")
+        print(f"under Miantennance are : {under_maintain}")
+        print("=" *60)
+
+         

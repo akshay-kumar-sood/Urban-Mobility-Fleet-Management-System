@@ -32,7 +32,8 @@ while True:
     print(f"2. Add Vehicle ")
     print(f"3. Display HUb Vehicles ")
     print(f"4. Categorized View")
-    print(f"5. Exit ")
+    print(f"5. Vehicle status Count ")
+    print(f"6. Exit ")
     print()
     choice = int(input("Enter Choice : "))
 
@@ -59,6 +60,17 @@ while True:
         model = input("Model : ")
         battery = float(input("Battery Percentage : "))
 
+        status_map ={
+            1: "Available",
+            2: "On Trip",
+            3: "Under Maintenance"
+        }
+
+        car_status =int(input("Maintenance Status (1-Available, 2 -On Trip, 3- Under Maintenance) : "))
+
+        if car_status not in status_map:
+            raise ValueError("Incorrect Maintenance Status")
+        
         
         if vehicle_choice == 1:
 
@@ -71,6 +83,7 @@ while True:
                 seating
             )
 
+            vehicle.maintenance_status = status_map[car_status]
 
         elif vehicle_choice == 2:
 
@@ -83,6 +96,7 @@ while True:
                 speed
             )
 
+            vehicle.maintenance_status = status_map[car_status]
 
         else:
             raise ValueError("Invalid Vehicle Type")
