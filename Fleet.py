@@ -1,9 +1,13 @@
+from dataclasses import dataclass,field
+from hub import Hub
+
+@dataclass
 class Fleet:
 
-    def __init__(self):
-        self.hubs=[]
+    hubs:list[Hub] = field(default_factory=list)
 
-    def add_hub(self,hub):
+    def add_hub(self, hub:Hub) -> None:
+
         for existing_hub in self.hubs:
 
             if existing_hub.hub_name == hub.hub_name:
@@ -12,21 +16,30 @@ class Fleet:
         self.hubs.append(hub)
 
 
-    def get_hub(self,hub_name):
+    def get_hub(self,hub_name:str) -> Hub:
+
         for hub in self.hubs:
+            
             if hub.hub_name == hub_name:
                 return hub
 
         raise ValueError(f"Hub '{hub_name}' does not exist. Please add it first.")   
 
 
-    def search_hub(self):
+    def search_hub(self) -> None:
         hub_name=input("Enter Hub name : ")
         hub=self.get_hub(hub_name)
         hub.display_vehicle()
 
-    def percentage_search(self):
+
+    def percentage_search(self) -> None:
         hub_name=input("Enter Hub name : ")
         hub=self.get_hub(hub_name)
         hub.percentage_gt_80()
+
+
+    def categorized_search(self) -> None:
+        hub_name = input("Enter Hub Name : ")
+        hub=self.get_hub(hub_name)
+        hub.categorized_view()
 

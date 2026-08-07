@@ -1,47 +1,72 @@
 from abc import ABC,abstractmethod
+from dataclasses import dataclass,field
 
+@dataclass
 class Vehicle(ABC):
 
-    def __init__(self, vehicle_id, model, battery_percentage):
+    vehicle_id:int
+    model:str
+    _battery_percentage:float
+    __maintenance_status:str = field(default="Available",init=False, repr=False)
+    __rental_price: float = field(default=0,init=False,repr=False)
 
-        self.vehicle_id = vehicle_id
-        self.model = model
-        self.battery_percentage = None
-        self.set_battery_percentage(battery_percentage)
-        self.__maintenance_status = "Available"
-        self.__rental_price = 0
+    def __post_init__(self) -> None:
+        self.battery_percentage=self._battery_percentage
 
-    
-    def get_battery_percentage(self):
-        return self.battery_percentage
+    @property
+    def battery_percentage(self) -> float:
+        return self._battery_percentage
 
-    def set_battery_percentage(self, battery_percentage):
-        if 0 <= battery_percentage <= 100:
-            self.battery_percentage = battery_percentage
-        else:
-            raise ValueError("Battery percentage must be between 0 and 100.")
+    @battery_percentage.setter
+    def battery_percentage(self,value:float) -> None:
 
-    
-    def get_maintenance_status(self):
+        if not 0 <= value <=100:
+            raise ValueError("Battery Percentage must be between 0 and 100 ")
+
+        self._battery_percentage=value
+
+    @property
+    def maintenance_status(self) -> str:
         return self.__maintenance_status
-
-    def set_maintenance_status(self, maintenance_status):
-        self.__maintenance_status = maintenance_status
-
     
-    def get_rental_price(self):
-        return self.__rental_price
 
-    def set_rental_price(self, rental_price):
-        self.__rental_price = rental_price
+    @maintenance_status.setter
+    def maintenance_status(self,value:str) -> None:
+
+        trusted_status=[
+            "Available",
+            "On Trip",
+            "Under Maintenance"
+        ]
+
+        if value not in trusted_status:
+            raise ValueError(f"Incorrect status. choose (Available / ON Trip / Under Maintenance) ")
+        
+        self.__maintenance_status=value
+
+
+    @property
+    def rental_price(self) -> float:
+        return self.__rental_price
+    
+
+    @rental_price.setter
+    def rental_price(self,value:float) -> None:
+        self.__rental_price = value
+
 
     @abstractmethod
-    def calculate_trip_cost(self,distance):
+    def calculate_trip_cost(self,distance:float) -> float:
         pass
 
-    def __eq__(self, other):
 
-        if isinstance(other, Vehicle):
+    def __eq__(self,other:object) -> bool:
+
+        if isinstance(other,Vehicle):
             return self.vehicle_id == other.vehicle_id
 
         return False
+    
+    
+    
+  

@@ -1,10 +1,10 @@
+from dataclasses import dataclass
 from Vehicle import Vehicle
 
+@dataclass
 class ElectricCar(Vehicle):
 
-    def __init__(self,vehicle_id, model, battery_percentage,seating_capacity):
-        super().__init__(vehicle_id,model,battery_percentage)
-        self.seating_capacity=seating_capacity
+    seating_capacity: int
 
     def calculate_trip_cost(self, distance):
         return 5 + (distance * 0.50)
