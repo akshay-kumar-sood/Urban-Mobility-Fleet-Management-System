@@ -121,4 +121,23 @@ class Hub:
         print(f"under Miantennance are : {under_maintain}")
         print("=" *60)
 
+    def sort_vehicle_model(self) -> None:
+        if not self.vehicles:
+            raise ValueError(f"No vehicle found in {self.hub_name} hub.")
+
+        sorted_vehicles = sorted(
+        self.vehicles,
+        key=lambda vehicle: vehicle.model
+        )
+
+        print("=" * 60)
+        print(f"Vehicles Sorted Alphabetically in Hub : {self.hub_name}")
+        print("=" * 60)
+
+        for vehicle in sorted_vehicles:
+            print(vehicle)
+            
+        print("-" * 60)
+
+
          
