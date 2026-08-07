@@ -121,23 +121,53 @@ class Hub:
         print(f"under Miantennance are : {under_maintain}")
         print("=" *60)
 
-    def sort_vehicle_model(self) -> None:
+
+    def sorting(self) -> None:
+
         if not self.vehicles:
             raise ValueError(f"No vehicle found in {self.hub_name} hub.")
 
-        sorted_vehicles = sorted(
-        self.vehicles,
-        key=lambda vehicle: vehicle.model
+        print("\n===== SORTING MENU =====")
+        print("1. Sort by Battery Percentage")
+        print("2. Sort by Fare Price")
+        print("3. Sort by Model Name")
+
+        choice = int(input("Enter Choice : "))
+
+        if choice == 1:
+
+            sorted_vehicles = sorted(
+                self.vehicles,
+                key=lambda vehicle: vehicle.battery_percentage,
+                reverse=True
         )
 
+        elif choice == 2:
+
+            sorted_vehicles = sorted(
+                self.vehicles,
+                key=lambda vehicle: vehicle.rental_price,
+                reverse=True
+            )
+
+        elif choice == 3:
+
+            sorted_vehicles = sorted(
+                self.vehicles,
+                key=lambda vehicle: vehicle.model
+        )
+
+        else:
+            raise ValueError("Invalid Choice")
+
         print("=" * 60)
-        print(f"Vehicles Sorted Alphabetically in Hub : {self.hub_name}")
+        print(f"Sorted Vehicles in Hub : {self.hub_name}")
         print("=" * 60)
 
         for vehicle in sorted_vehicles:
+
             print(vehicle)
-            
-        print("-" * 60)
+
 
 
          
