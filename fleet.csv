@@ -1,0 +1,2 @@
+hub_name,vehicle_type,vehicle_id,model,battery_percentage,maintenance_status,rental_price,extra
+Airport,ElectricCar,1051,A1111,78.0,On Trip,55.0,9

@@ -27,14 +27,16 @@ fleet=Fleet()
 
 while True:
 
-    print(f"\n====== ECO RIDE ======")
-    print(f"1. Add Hub ")
-    print(f"2. Add Vehicle ")
-    print(f"3. Display HUb Vehicles ")
-    print(f"4. Categorized View")
-    print(f"5. Vehicle status Count ")
-    print(f"6. Sort Vehicles ")
-    print(f"7. Exit ")
+    print("\n====== ECO RIDE ======")
+    print("1. Add Hub ")
+    print("2. Add Vehicle ")
+    print("3. Display HUb Vehicles ")
+    print("4. Categorized View")
+    print("5. Vehicle status Count ")
+    print("6. Sort Vehicles ")
+    print("7. Save Fleet to CSV")
+    print("8. Load Fleet from CSV")
+    print("9. Exit ")
     print()
     choice = int(input("Enter Choice : "))
 
@@ -101,7 +103,7 @@ while True:
             )
 
             minutes = float(input("Enter Trip Duration (Minutes): "))
-            vehicle.rental_price = vehicle.calculate_trip_cost(distance)
+            vehicle.rental_price = vehicle.calculate_trip_cost(minutes)
             vehicle.maintenance_status = status_map[car_status]
 
         else:
@@ -141,12 +143,26 @@ while True:
         fleet.sorting()
 
     elif choice == 7:
+        fleet.save_csv()
+        print("Data Saved Successfully", flush=True)
+
+    elif choice == 8:
+        fleet.load_csv()
+        print("Fleet data loaded from CSV successfully.")
+
+        for hub in fleet.hubs:
+            print(f"\nHub : {hub.hub_name}")
+
+            for vehicle in hub.vehicles:
+                print(vehicle)
+
+    elif choice == 9:
         print("Signing Off - AKSHAY KUMAR SOOD")
         break
 
     else:
-
         print("Invalid Choice")
+
 
 
 print("="*60)
@@ -179,6 +195,8 @@ print("="*60)
 print("Testing UC8 - Search Functionality - Filter on basic of battery percentage>80")
 print("="*60)
 fleet3.percentage_search()
+
+
 
 
 
