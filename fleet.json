@@ -1,0 +1,30 @@
+[
+    {
+        "hub_name": "AirPort",
+        "vehicles": [
+            {
+                "vehicle_type": "ElectricCar",
+                "vehicle_id": 3456,
+                "model": "A8765",
+                "battery_percentage": 39.0,
+                "maintenance_status": "Under Maintenance",
+                "rental_price": 3005.0,
+                "seating_capacity": 10
+            }
+        ]
+    },
+    {
+        "hub_name": "BusStand",
+        "vehicles": [
+            {
+                "vehicle_type": "ElectricScooter",
+                "vehicle_id": 5559,
+                "model": "A9995",
+                "battery_percentage": 99.0,
+                "maintenance_status": "Available",
+                "rental_price": 91.0,
+                "max_speed_limit": 200
+            }
+        ]
+    }
+]
