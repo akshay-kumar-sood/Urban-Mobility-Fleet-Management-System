@@ -2,16 +2,12 @@ from ElectricCar import ElectricCar
 from ElectricScooter import ElectricScooter
 from hub import Hub
 from Fleet import Fleet
-from Vehicle import Vehicle
-
-def calculate_trip_cost(self,distance):
-        return distance
 
 tesla=ElectricCar(1051,"T202",86,8)
 ola=ElectricScooter(1235,"S306",20,120)
 
-print(f"Tesla Battery Percentage : {tesla.get_battery_percentage()}")
-print(f"Ola Battery Percentage : {ola.get_battery_percentage()}")
+print(f"Tesla Battery Percentage : {tesla.battery_percentage}")
+print(f"Ola Battery Percentage : {ola.battery_percentage}")
 
 vehicle_list=[tesla,ola]
 
@@ -35,8 +31,9 @@ while True:
     print(f"1. Add Hub ")
     print(f"2. Add Vehicle ")
     print(f"3. Display HUb Vehicles ")
-    print("4. Exit ")
-
+    print(f"4. Categorized View")
+    print(f"5. Exit ")
+    print()
     choice = int(input("Enter Choice : "))
 
     if choice == 1:
@@ -62,16 +59,18 @@ while True:
         model = input("Model : ")
         battery = float(input("Battery Percentage : "))
 
+        
         if vehicle_choice == 1:
 
             seating = int(input("Seating Capacity : "))
-
+            
             vehicle = ElectricCar(
                 vehicle_id,
                 model,
                 battery,
                 seating
             )
+
 
         elif vehicle_choice == 2:
 
@@ -83,6 +82,7 @@ while True:
                 battery,
                 speed
             )
+
 
         else:
             raise ValueError("Invalid Vehicle Type")
@@ -110,12 +110,21 @@ while True:
                 print("----------------------------")
                 print(f"Vehicle ID : {vehicle.vehicle_id}")
                 print(f"Model      : {vehicle.model}")
-                print(f"Battery    : {vehicle.get_battery_percentage()}%")
+                print(f"Battery    : {vehicle.battery_percentage}%")
 
     elif choice == 4:
 
+        fleet.categorized_search()
+
+    elif choice == 5:
+        fleet.vehicle_status_cnt()
+
+    elif choice == 6:
+
         print("Signing Off - AKSHAY KUMAR SOOD")
         break
+
+
 
     else:
 
