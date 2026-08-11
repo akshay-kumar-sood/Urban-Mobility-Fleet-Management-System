@@ -7,7 +7,7 @@ tesla=ElectricCar(1051,"T202",86,8)
 ola=ElectricScooter(1235,"S306",20,120)
 
 print(f"Tesla Battery Percentage : {tesla.battery_percentage}")
-print(f"Ola Battery Percentage : {ola.battery_percentage}")
+print(f"Ola Battery Percentage   : {ola.battery_percentage}")
 
 vehicle_list=[tesla,ola]
 
@@ -33,7 +33,7 @@ while True:
     print(f"3. Display HUb Vehicles ")
     print(f"4. Categorized View")
     print(f"5. Vehicle status Count ")
-    print(f"6. Sort Vehicles Alphabetically")
+    print(f"6. Sort Vehicles ")
     print(f"7. Exit ")
     print()
     choice = int(input("Enter Choice : "))
@@ -61,6 +61,7 @@ while True:
         model = input("Model : ")
         battery = float(input("Battery Percentage : "))
 
+
         status_map ={
             1: "Available",
             2: "On Trip",
@@ -84,6 +85,8 @@ while True:
                 seating
             )
 
+            distance = float(input("Enter Trip Distance (KM): "))
+            vehicle.rental_price = vehicle.calculate_trip_cost(distance)
             vehicle.maintenance_status = status_map[car_status]
 
         elif vehicle_choice == 2:
@@ -97,6 +100,8 @@ while True:
                 speed
             )
 
+            minutes = float(input("Enter Trip Duration (Minutes): "))
+            vehicle.rental_price = vehicle.calculate_trip_cost(distance)
             vehicle.maintenance_status = status_map[car_status]
 
         else:
@@ -135,7 +140,7 @@ while True:
         fleet.vehicle_status_cnt()
 
     elif choice == 6:
-        fleet.sort_vehicle()
+        fleet.sorting()
 
     elif choice == 7:
         print("Signing Off - AKSHAY KUMAR SOOD")
@@ -146,7 +151,10 @@ while True:
         print("Invalid Choice")
 
 
+
 print("-"*60)
+
+
 
 
 
@@ -180,6 +188,8 @@ print("="*60)
 print("Testing UC8 - Search Functionality - Filter on basic of battery percentage>80")
 print("="*60)
 fleet3.percentage_search()
+
+
 
 
         
