@@ -28,15 +28,17 @@ fleet=Fleet()
 while True:
 
     print("\n====== ECO RIDE ======")
-    print("1. Add Hub ")
-    print("2. Add Vehicle ")
-    print("3. Display HUb Vehicles ")
-    print("4. Categorized View")
-    print("5. Vehicle status Count ")
-    print("6. Sort Vehicles ")
-    print("7. Save Fleet to CSV")
-    print("8. Load Fleet from CSV")
-    print("9. Exit ")
+    print("1.  Add Hub ")
+    print("2.  Add Vehicle ")
+    print("3.  Display HUb Vehicles ")
+    print("4.  Categorized View")
+    print("5.  Vehicle status Count ")
+    print("6.  Sort Vehicles ")
+    print("7.  Save Fleet to CSV")
+    print("8.  Load Fleet from CSV")
+    print("9.  Save Fleet to JSON")
+    print("10. Load Fleet from JSON")
+    print("11. Exit ")
     print()
     choice = int(input("Enter Choice : "))
 
@@ -159,6 +161,21 @@ while True:
                 print(vehicle)
 
     elif choice == 9:
+        fleet.save_json()
+        print("Fleet data loaded from JSON successfully.")
+
+
+    elif choice == 10:
+        fleet.load_json()
+        print("Fleet data loaded from JSON successfully.")
+
+        for hub in fleet.hubs:
+            print(f"\nHub : {hub.hub_name}")
+
+        for vehicle in hub.vehicles:
+            print(vehicle)
+
+    elif choice == 11:
         print("Signing Off - AKSHAY KUMAR SOOD")
         break
 

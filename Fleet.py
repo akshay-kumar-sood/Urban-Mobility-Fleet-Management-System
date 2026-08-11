@@ -3,6 +3,7 @@ from hub import Hub
 from ElectricCar import ElectricCar
 from ElectricScooter import ElectricScooter
 import csv
+import json
 
 @dataclass
 class Fleet:
@@ -153,6 +154,83 @@ class Fleet:
 
                 hub.add_vehicle(vehicle)
 
+
+    def save_json(self, filename="fleet.json"):
+
+        data = []
+
+        for hub in self.hubs:
+
+            hub_data = {
+                "hub_name": hub.hub_name,
+                "vehicles": []
+            }
+
+            for vehicle in hub.vehicles:
+
+                vehicle_data = {
+                    "vehicle_type": type(vehicle).__name__,
+                    "vehicle_id": vehicle.vehicle_id,
+                    "model": vehicle.model,
+                    "battery_percentage": vehicle.battery_percentage,
+                    "maintenance_status": vehicle.maintenance_status,
+                    "rental_price": vehicle.rental_price
+                }
+
+                if isinstance(vehicle, ElectricCar):
+                    vehicle_data["seating_capacity"] = vehicle.seating_capacity
+
+                elif isinstance(vehicle, ElectricScooter):
+                    vehicle_data["max_speed_limit"] = vehicle.max_speed_limit
+
+                hub_data["vehicles"].append(vehicle_data)
+
+            data.append(hub_data)
+
+        with open(filename, "w") as file:
+            json.dump(data, file, indent=4)
+
+
+    def load_json(self, filename="fleet.json"):
+
+        self.hubs.clear()
+
+        with open(filename, "r") as file:
+            data = json.load(file)
+
+        for hub_data in data:
+
+            hub = Hub(hub_data["hub_name"])
+
+            for vehicle_data in hub_data["vehicles"]:
+
+                if vehicle_data["vehicle_type"] == "ElectricCar":
+
+                    vehicle = ElectricCar(
+                        int(vehicle_data["vehicle_id"]),
+                        vehicle_data["model"],
+                        float(vehicle_data["battery_percentage"]),
+                        int(vehicle_data["seating_capacity"])
+                    )
+
+                elif vehicle_data["vehicle_type"] == "ElectricScooter":
+
+                    vehicle = ElectricScooter(
+                        int(vehicle_data["vehicle_id"]),
+                        vehicle_data["model"],
+                        float(vehicle_data["battery_percentage"]),
+                        int(vehicle_data["max_speed_limit"])
+                    )
+
+                else:
+                    continue
+
+                vehicle.maintenance_status = vehicle_data["maintenance_status"]
+                vehicle.rental_price = float(vehicle_data["rental_price"])
+
+                hub.add_vehicle(vehicle)
+
+            self.add_hub(hub)
 
 
         
