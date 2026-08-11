@@ -82,7 +82,8 @@ while True:
 
         else:
             raise ValueError("Invalid Vehicle Type")
-            continue
+            
+
 
         hub.add_vehicle(vehicle)
 
@@ -119,7 +120,14 @@ while True:
 print("-"*60)
 
 
+print("Testing UC7 - Validation on same vehicle id")
 
+old_tesla=ElectricCar(1098,"A2026",90,5)
+new_tesla=ElectricCar(1098,"A2027",80,8)
+
+airport=Hub("airport")
+airport.add_vehicle(old_tesla)
+airport.add_vehicle(new_tesla)
 
 
         
