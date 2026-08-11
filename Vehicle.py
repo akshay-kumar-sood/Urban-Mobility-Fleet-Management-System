@@ -66,3 +66,4 @@ class Vehicle(ABC):
             return self.vehicle_id == other.vehicle_id
 
         return False
+

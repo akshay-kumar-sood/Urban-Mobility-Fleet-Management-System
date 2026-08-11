@@ -43,3 +43,7 @@ class Fleet:
         hub=self.get_hub(hub_name)
         hub.categorized_view()
 
+    def vehicle_status_cnt(self) -> None:
+        hub_name = input("Enter Hub Name : ")
+        hub=self.get_hub(hub_name)
+        hub.status_count()
