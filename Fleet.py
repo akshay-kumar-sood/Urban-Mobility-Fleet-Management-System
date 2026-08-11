@@ -18,3 +18,15 @@ class Fleet:
                 return hub
 
         raise ValueError(f"Hub '{hub_name}' does not exist. Please add it first.")   
+          
+
+    def search_hub(self):
+        hub_name=input("Enter Hub name : ")
+        hub=self.get_hub(hub_name)
+        hub.display_vehicle()
+
+    def percentage_search(self):
+        hub_name=input("Enter Hub name : ")
+        hub=self.get_hub(hub_name)
+        hub.percentage_gt_80()
+
