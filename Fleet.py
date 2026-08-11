@@ -1,5 +1,8 @@
 from dataclasses import dataclass,field
 from hub import Hub
+from ElectricCar import ElectricCar
+from ElectricScooter import ElectricScooter
+import csv
 
 @dataclass
 class Fleet:
@@ -57,6 +60,101 @@ class Fleet:
         hub_name = input("Enter Hub Name : ")
         hub = self.get_hub(hub_name)
         hub.sorting()
-    
 
-    
+
+
+    def save_csv(self, filename="fleet.csv"):
+
+        print("Saving fleet data...")
+
+        with open(filename, "w", newline="") as file:
+
+            writer = csv.writer(file)
+
+            writer.writerow([
+                "hub_name",
+                "vehicle_type",
+                "vehicle_id",
+                "model",
+                "battery_percentage",
+                "maintenance_status",
+                "rental_price",
+                "extra"
+            ])
+
+            for hub in self.hubs:
+
+                for vehicle in hub.vehicles:
+
+                    if isinstance(vehicle, ElectricCar):
+                        extra = vehicle.seating_capacity
+
+                    elif isinstance(vehicle, ElectricScooter):
+                        extra = vehicle.max_speed_limit
+
+                    else:
+                        raise ValueError("Unknown vehicle type")
+
+                    writer.writerow([
+                        hub.hub_name,
+                        type(vehicle).__name__,
+                        vehicle.vehicle_id,
+                        vehicle.model,
+                        vehicle.battery_percentage,
+                        vehicle.maintenance_status,
+                        vehicle.rental_price,
+                        extra
+                    ])
+
+        print("CSV file written successfully.")
+
+
+
+        
+    def load_csv(self, filename="fleet.csv"):
+
+        self.hubs.clear()
+
+        with open(filename, "r", newline="") as file:
+
+            reader = csv.DictReader(file)
+
+            for row in reader:
+
+                hub_name = row["hub_name"]
+
+                try:
+                    hub = self.get_hub(hub_name)
+
+                except ValueError:
+                    hub = Hub(hub_name)
+                    self.add_hub(hub)
+
+                if row["vehicle_type"] == "ElectricCar":
+
+                    vehicle = ElectricCar(
+                        int(row["vehicle_id"]),
+                        row["model"],
+                        float(row["battery_percentage"]),
+                        int(row["extra"])
+                    )
+
+                elif row["vehicle_type"] == "ElectricScooter":
+
+                    vehicle = ElectricScooter(
+                        int(row["vehicle_id"]),
+                        row["model"],
+                        float(row["battery_percentage"]),
+                        int(row["extra"])
+                    )
+
+                vehicle.maintenance_status = row["maintenance_status"]
+                vehicle.rental_price = float(row["rental_price"])
+
+                hub.add_vehicle(vehicle)
+
+
+
+        
+
+        
