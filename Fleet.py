@@ -47,3 +47,10 @@ class Fleet:
         hub_name = input("Enter Hub Name : ")
         hub=self.get_hub(hub_name)
         hub.status_count()
+
+    def sort_vehicle(self) -> None:
+        hub_name = input("Enter Hub Name : ")
+        hub = self.get_hub(hub_name)
+        hub.sort_vehicle_model()
+
+    

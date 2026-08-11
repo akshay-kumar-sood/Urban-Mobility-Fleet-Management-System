@@ -33,7 +33,8 @@ while True:
     print(f"3. Display HUb Vehicles ")
     print(f"4. Categorized View")
     print(f"5. Vehicle status Count ")
-    print(f"6. Exit ")
+    print(f"6. Sort Vehicles Alphabetically")
+    print(f"7. Exit ")
     print()
     choice = int(input("Enter Choice : "))
 
@@ -134,11 +135,11 @@ while True:
         fleet.vehicle_status_cnt()
 
     elif choice == 6:
+        fleet.sort_vehicle()
 
+    elif choice == 7:
         print("Signing Off - AKSHAY KUMAR SOOD")
         break
-
-
 
     else:
 
